@@ -6,6 +6,14 @@ let mongoDb = require('./db');
 
 const BookRoute = require('./BookRoute')
 const UsersRoute = require('./UsersRoute')
+const StudentRouter = require('./routes/student.routes')
+const TeacherRouter = require('./routes/teacher.routes')
+const CourseRoute = require('./routes/course.routes');
+const NoteRouter = require('./routes/note.routes');
+const AssignmentRouter = require('./routes/AssignmentRouter');
+const MessageRouter = require('./routes/message.routes');
+const QuizRouter = require('./routes/quiz.routes');
+const ResetPasswordRouter = require('./routes/resetPassword.routes'); 
 
 mongoose.Promise = global.Promise;
 mongoose.connect(mongoDb.database, {
@@ -26,6 +34,17 @@ var  jsonParser = app.use(express.json());
 app.use(cors());
 app.use('/', BookRoute)
 app.use('/user',UsersRoute)
+
+app.use('/api',StudentRouter);
+app.use('/api',TeacherRouter);
+app.use('/api',CourseRoute);
+app.use('/api',NoteRouter);
+app.use('/api',AssignmentRouter);
+app.use('/api',MessageRouter);
+app.use('/api',QuizRouter);
+app.use('/api',ResetPasswordRouter);
+
+
 
 
 const port = 8000 ;
