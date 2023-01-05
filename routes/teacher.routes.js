@@ -24,10 +24,10 @@ router.post("/teachers", async (req, res) => {
 router.post("/teachers/login", async (req, res) => {
     try {
         const teacher = await Teacher.findOne({email : req.body.email});
-        const isMatch = await bcrypt.compare(req.body.password, teacher.password);
-        const token = jwt.sign({_id: teacher._id}, process.env.JWT_KEY);
+        const isMatch = (req.body.password===teacher.password?true:false);
+        // const token = jwt.sign({_id: teacher._id}, process.env.JWT_KEY);
         if(isMatch)
-            res.send({success: true, data: teacher, token})
+            res.send({success: true, data: teacher})
         else
             res.send({success: false})
     } catch(error) {
