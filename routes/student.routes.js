@@ -8,7 +8,7 @@ const router = new express.Router();
 // Create new student
 router.post("/students", async (req, res) => {
     const student = new Student(req.body);
-
+    console.log(req.body)
     try {
         await student.save();
         res.send({data: student, success: true});
@@ -24,10 +24,10 @@ router.post("/students", async (req, res) => {
 router.post("/students/login", async (req, res) => {
     try {
         const student = await Student.findOne({email : req.body.email})
-        const isMatch = await bcrypt.compare(req.body.password, student.password)
-        const token = jwt.sign({_id:student._id}, process.env.JWT_KEY);
+        const isMatch = req.body.password==student.password?true:false;
         if(isMatch)
-            res.send({success: true, data: student, token})
+            {
+            res.send({success: true, data: student})}
         else
             res.send({success: false})
     } catch(error) {
