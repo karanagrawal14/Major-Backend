@@ -25,6 +25,7 @@ router.post("/assignment", async (req, res) => {
   const assignment = new Assignment(req.body);
   try {
     await assignment.save();
+    console.log("This is working");
     res.send({ data: assignment, success: true });
   } catch (error) {
     console.log(error);
