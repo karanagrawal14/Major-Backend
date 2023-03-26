@@ -14,7 +14,7 @@ const AssignmentRouter = require('./routes/AssignmentRouter');
 const MessageRouter = require('./routes/message.routes');
 const QuizRouter = require('./routes/quiz.routes');
 const ResetPasswordRouter = require('./routes/resetPassword.routes'); 
-
+const path = require('path');
 mongoose.Promise = global.Promise;
 mongoose.connect(mongoDb.database, {
     useUnifiedTopology: true,
@@ -30,7 +30,8 @@ error => {
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 var  jsonParser = app.use(express.json());
-
+// app.use(express.static('public'))
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.use('/', BookRoute)
 app.use('/user',UsersRoute)

@@ -16,6 +16,9 @@ let bookSchema = new Schema({
   },
   times_issued:{
       type:Number
+  },
+  image:{
+    type:String,
   }
 }, {
     collection: 'books'
