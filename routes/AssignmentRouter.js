@@ -68,6 +68,7 @@ router.get("/assignment/:id", async (req, res) => {
 // Post attachment for an assignment
 router.post("/assignment/attachment/:id", upload.single("file"), async (req, res) => {
     const assignment = await Assignment.findById(req.params.id);
+    
     assignment.file = req.file.buffer;
     await assignment.save();
     res.send();

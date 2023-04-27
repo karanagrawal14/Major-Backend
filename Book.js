@@ -18,9 +18,14 @@ let bookSchema = new Schema({
       type:Number
   },
   image:{
-    type:String,
+    type:Buffer,
+    contentType:String
+  },
+  file:{
+    type:Buffer
   }
 }, {
+    timestamps:true,
     collection: 'books'
   })
 
