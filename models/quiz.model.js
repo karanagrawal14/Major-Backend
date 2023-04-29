@@ -7,7 +7,9 @@ const quizSchema = new Schema({
   quiz_title: { type: String },
   is_active: {type: Boolean},
   total_marks: {type: Number},
-  no_of_questions: {type: Number}
+  no_of_questions: {type: Number},
+  quiz_time:{type:Number}
+
 },
 {
   timestamps: true

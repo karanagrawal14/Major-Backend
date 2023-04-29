@@ -9,6 +9,7 @@ const assignmentSchema = new Schema({
   max_marks: { type: Number },
   is_assignment: { type: Boolean, required: true },
   file: { type: Buffer },
+ 
 });
 
 const Assignment = mongoose.model("Assignment", assignmentSchema);
