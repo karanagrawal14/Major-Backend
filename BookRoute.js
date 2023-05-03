@@ -3,8 +3,6 @@ let express = require('express');
 let router = express.Router();
 let multer = require('multer');
 let bookSchema = require('./Book');
-const pdfjsLib = require("pdfjs-dist/legacy/build/pdf.js");
-const fs = require('fs');
 
 const upload = multer({
   limits: {
