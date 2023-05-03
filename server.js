@@ -14,6 +14,7 @@ const AssignmentRouter = require('./routes/AssignmentRouter');
 const MessageRouter = require('./routes/message.routes');
 const QuizRouter = require('./routes/quiz.routes');
 const ResetPasswordRouter = require('./routes/resetPassword.routes'); 
+const AttendanceRouter = require('./routes/attendanceRouter');
 const path = require('path');
 mongoose.Promise = global.Promise;
 mongoose.connect(mongoDb.database, {
@@ -44,6 +45,7 @@ app.use('/api',AssignmentRouter);
 app.use('/api',MessageRouter);
 app.use('/api',QuizRouter);
 app.use('/api',ResetPasswordRouter);
+app.use('/api',AttendanceRouter);
 
 
 
