@@ -60,10 +60,13 @@ router.get("/attendence/hasSubmitted/:attendanceId/:studentId", async (req, res)
 router.post("/startAttendence/:id", async (req, res) => {
     const _id = req.params.id;
     try {
+      
         const attendance = await Attendance.findByIdAndUpdate(_id, {
             is_active: true
         }, {new: true, runValidators: true});
+        
         res.send({data: attendance, success: true});
+        console.log(attendance);
     } catch (error) {
         console.log(error)
         res.status(400).send(error);
@@ -84,16 +87,16 @@ router.post("/endAttendence/:id", async (req, res) => {
   })
 //   http://localhost:8000/api/assignment/${assID}
 router.post("/submitAttendence", async (req, res) => {
-  const attendenceResponse = new attendanceResponse(req.body);
+  const ar = new attendanceResponse(req.body);
   try {
-    const student = await attendenceResponse.find({attendance_id: req.body.attendance_id, student_id: req.body.student_id})
+    const student = await attendanceResponse.find({attendance_id: req.body.attendance_id, student_id: req.body.student_id})
 
     if(student.length > 0)
     {
       return res.send({success: false, data: "Submission exists"})
     } else {
-      await attendanceResponse.save();
-      res.send({ data: attendanceResponse, success: true });
+      await ar.save();
+      res.send({ data: ar, success: true });
     }
   } catch (error) {
     console.log(error);
