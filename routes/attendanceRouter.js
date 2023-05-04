@@ -70,7 +70,7 @@ router.post("/startAttendance/:id", async (req, res) => {
     }
   })
 //   http://localhost:8000/api/endAttendence/${attendenceId}
-router.post("/endQuiz/:id", async (req, res) => {
+router.post("/endAttendance/:id", async (req, res) => {
     const _id = req.params.id;
     try {
         const attendance = await Attendance.findByIdAndUpdate(_id, {
