@@ -3,19 +3,23 @@ const Attendance = require('../models/attendance')
 const attendanceResponse = require('../models/AttendanceResponse');
 const router = new express.Router();
 
-router.get("attendance/course/:id",async(req,res,next)=>{
-    const course_id = req.params._id;
+router.get("/attendance/course/:course_id",async(req,res)=>{
+  console.log(req.params.course_id);
+    const course_id = req.params.course_id;
+    
     try {
-        const attendance = await Attendance.find({ course_id });
+        const attendance = await Attendance.find({ course_id:course_id });
+        //  console.log(attendance);
         if (!attendance || attendance.length == 0)
           return res.status(404).send({ success: false, data: "No response found" });
     
         res.send({ success: true, data: attendance });
       } catch (error) {
+       
         res.status(500).send({ success: false, error });
       }
 })
-router.post("attendance",async(req,res,next)=>{
+router.post("/attendance",async(req,res,next)=>{
     const attendance = new Attendance(req.body);
     try {
       await attendance.save();

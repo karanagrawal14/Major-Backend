@@ -5,7 +5,7 @@ const attendanceSchema = new Schema({
   course_id: { type: String, required: true},
   teacher_id: { type: String, required: true },
   date: {type:String,required:true},
-  is_active: {type: Boolean}
+  is_active: {type: Boolean,default:false}
 
 },
 {
