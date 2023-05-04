@@ -103,5 +103,17 @@ router.post("/submitAttendence", async (req, res) => {
     res.status(400).send(error);
   }
 });
-  
+router.get("/attendenceResult/:id", async (req, res) => {
+  const _id = req.params.id;
+  try {
+    const attendenceResult = await attendanceResponse.find({ attendance_id: _id });
+    if (!attendenceResult || attendenceResult.length == 0)
+      return res.status(404).send({ success: false, data: "No response found" });
+
+    res.send({ success: true, data: attendenceResult });
+  } catch (error) {
+    res.status(500).send({ success: false, error });
+  }
+});
+
 module.exports = router;
