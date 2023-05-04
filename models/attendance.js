@@ -13,6 +13,6 @@ const attendanceSchema = new Schema({
 }
 );
 
-const Quiz = mongoose.model('Quiz', quizSchema);
+const Attendance = mongoose.model('Attendance', attendanceSchema);
 
-module.exports = Quiz;
+module.exports = Attendance;
